@@ -446,26 +446,16 @@ window.addEventListener("scroll", () => {
   topbar.classList.toggle("scrolled", window.scrollY > 24);
 }, { passive: true });
 async function initializeSite() {
-  const status = document.getElementById("sheetStatus");
   try {
     if (typeof window.loadGoogleSheetContent === "function") {
       content = await window.loadGoogleSheetContent();
     }
     renderSiteContent();
-    if (status) {
-      status.textContent = "스프레드시트 연결 완료";
-      status.classList.add("success");
-      setTimeout(() => status.remove(), 2500);
-    }
   } catch (error) {
     console.error(error);
     if (window.SHEET_CONFIG?.useFallbackContent) {
       content = window.SITE_CONTENT || {};
       renderSiteContent();
-    }
-    if (status) {
-      status.textContent = "스프레드시트 연결 실패 · 샘플 내용을 표시 중";
-      status.classList.add("error");
     }
   }
 }

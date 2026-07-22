@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#12100e" />
+  <meta name="description" content="KISS OF LIFE SWEAT 음원총공팀 홈페이지" />
+  <title>KISS OF LIFE STREAM TEAM · SWEAT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:wght@500;700;800&family=Big+Shoulders+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar" id="topbar">
+      <a class="brand" href="#home" aria-label="홈으로 이동">
+        <img class="brand-logo" src="./assets/kiof-logo.png" alt="KISS OF LIFE" />
+        <span class="brand-sub">STREAM TEAM</span>
+      </a>
+      <button class="menu-button" type="button" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <nav class="desktop-nav" aria-label="주요 메뉴">
+        <a href="#home"><span>00</span>HOME</a>
+        <a href="#stream"><span>01</span>STREAM</a>
+        <a href="#guide"><span>02</span>GUIDE</a>
+        <a href="#fanchants"><span>03</span>FANCHANTS</a>
+        <a href="#notice"><span>04</span>NOTICE</a>
+        <a href="#about"><span>05</span>ABOUT</a>
+      </nav>
+    </header>
+    <aside class="mobile-menu" aria-hidden="true">
+      <a href="#home">HOME</a>
+      <a href="#stream">STREAM</a>
+      <a href="#guide">GUIDE</a>
+      <a href="#fanchants">FANCHANTS</a>
+      <a href="#notice">NOTICE</a>
+      <a href="#about">ABOUT</a>
+    </aside>
+    <main>
+      <section id="home" class="hero section">
+        <div class="hero-media" aria-hidden="true">
+          <picture>
+            <source media="(max-width: 720px)" srcset="./assets/kiof-hero-mobile.jpg" />
+            <img src="./assets/kiof-hero-web.jpg" alt="" />
+          </picture>
+          <div class="hero-scrim"></div>
+        </div>
+        <div class="hero-inner">
+          <div class="hero-copy" id="heroCopy"></div>
+        </div>
+        <div class="ticker" aria-label="주요 안내">
+          <div class="ticker-track" id="tickerTrack"></div>
+        </div>
+      </section>
+      <section class="today section-inner">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">KISSY! TODAY'S TO-DO!</p>
+            <h2>키씨, 오늘의 할 일입니다!</h2>
+          </div>
+          <span class="date-badge" id="todayDate">TODAY</span>
+        </div>
+        <div class="mission-grid" id="missionGrid"></div>
+      </section>
+      <section id="stream" class="stream section-inner">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">ONE CLICK STREAMING · 01</p>
+            <h2>스트리밍 바로가기</h2>
+          </div>
+          <p class="section-note">링크는 샘플이며 추후 실제 링크로 교체하면 됩니다.</p>
+        </div>
+        <div class="platform-list" id="platformList"></div>
+      </section>
+      <section id="guide" class="guide section-inner">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">STREAMING GUIDE · 02</p>
+            <h2>가이드</h2>
+          </div>
+        </div>
+        <div class="guide-grid">
+          <article class="guide-row guide-row--stream">
+            <div class="guide-row-copy">
+              <span class="guide-label">01</span>
+              <h3>스트리밍 &amp; 다운로드 가이드</h3>
+              <p>플랫폼을 선택하면 스트리밍·다운로드 가이드가 팝업으로 열립니다.</p>
+            </div>
+            <div class="guide-row-body">
+              <div class="platform-grid" id="guidePlatformGrid"></div>
+            </div>
+          </article>
+          <article class="guide-row guide-row--vote">
+            <div class="guide-row-copy">
+              <span class="guide-label">02</span>
+              <h3>투표 가이드</h3>
+              <p>음악방송을 선택하면 사전·실시간 투표 방법이 팝업으로 열립니다.</p>
+            </div>
+            <div class="guide-row-body">
+              <div class="platform-grid" id="voteShowGrid"></div>
+            </div>
+          </article>
+          <article class="guide-row guide-row--donation">
+            <div class="guide-row-copy">
+              <span class="guide-label">03</span>
+              <h3>아이디 기부 가이드</h3>
+              <p id="idDonationSubtitle">가이드에 따라 아이디 생성 후 기부해주세요. 타이틀곡 다운로드 총공에 사용합니다.</p>
+            </div>
+            <div class="guide-row-body">
+              <div class="action-list" id="idDonationGrid"></div>
+            </div>
+          </article>
+          <article class="guide-row guide-row--radio">
+            <div class="guide-row-copy">
+              <span class="guide-label">04</span>
+              <h3>라디오 가이드</h3>
+              <p>신청곡이 라디오에서 선곡되면 음악방송 차트의 방송출연 점수에 반영돼요. 방송사를 선택해 신청 방법을 확인하세요.</p>
+            </div>
+            <div class="guide-row-body">
+              <div class="action-list" id="radioStationGrid"></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section id="fanchants" class="fanchants section-inner">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">FANCHANTS · 03</p>
+            <h2>응원법</h2>
+          </div>
+          <p class="section-note">곡을 선택하면 응원법이 팝업으로 열립니다.</p>
+        </div>
+        <div class="fanchant-grid" id="fanchantGrid"></div>
+      </section>
+      <section id="notice" class="notice section-inner">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">NOTICE BOARD · 04</p>
+            <h2>공지사항</h2>
+          </div>
+          <button class="button button-small button-ghost" type="button">전체 보기</button>
+        </div>
+        <div class="notice-list" id="noticeList"></div>
+      </section>
+      <section id="about" class="about section-inner">
+        <div class="about-panel" id="aboutPanel"></div>
+      </section>
+    </main>
+    <footer>
+      <img class="footer-logo" src="./assets/kiof-logo.png" alt="KISS OF LIFE" />
+      <p class="footer-sub">STREAM TEAM · UNOFFICIAL FAN PROJECT</p>
+      <p class="footer-copy">© 2026 KIOF STREAM TEAM. ALL RIGHTS RESERVED.</p>
+    </footer>
+    <nav class="bottom-nav" aria-label="모바일 하단 메뉴">
+      <a href="#home"><span>●</span>HOME</a>
+      <a href="#stream"><span>▶</span>STREAM</a>
+      <a href="#guide"><span>▤</span>GUIDE</a>
+      <a href="#fanchants"><span>♪</span>CHANT</a>
+      <a href="#notice"><span>!</span>NOTICE</a>
+      <a href="#about"><span>✦</span>ABOUT</a>
+    </nav>
+    <div class="modal" id="guideModal" aria-hidden="true">
+      <div class="modal-backdrop" data-close-modal></div>
+      <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" type="button" aria-label="닫기" data-close-modal>×</button>
+        <div class="modal-scroll">
+          <p class="eyebrow" id="modalEyebrow">SAMPLE GUIDE</p>
+          <h2 id="modalTitle">가이드 제목</h2>
+          <div id="modalBody"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="sheetStatus" class="sheet-status">스프레드시트 불러오는 중…</div>
+  <script src="./content.js"></script>
+  <script src="./config.js"></script>
+  <script src="./sheet-loader.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>

@@ -60,7 +60,6 @@ function renderSiteContent() {
   if (platformList) {
     platformList.innerHTML = platforms.map((item, index) => `
       <a class="platform-card" href="${safeLink(item.url)}" ${linkAttrs(item.url)}>
-        <span class="platform-index">${String(index + 1).padStart(2, "0")}</span>
         ${iconTile(item.icon, item.name)}
         <span class="platform-name">${item.name || ""}</span>
         <span class="platform-tag">${item.tag || ""}</span>
@@ -222,7 +221,7 @@ function fitAboutHeadingLines() {
     const naturalWidth = line.getBoundingClientRect().width;
     if (!naturalWidth) return;
     const baseSize = parseFloat(window.getComputedStyle(line).fontSize);
-    const fitted = baseSize * (containerWidth / naturalWidth);
+    const fitted = Math.min(baseSize * (containerWidth / naturalWidth), 60);
     line.style.fontSize = `${fitted}px`;
   });
 }

@@ -138,7 +138,7 @@ window.SITE_CONTENT = {
     { album: "미니 1집 KISS OF LIFE", title: "쉿 (Shhh)", chant: "이 곡의 응원법을 이곳에 입력해 주세요." }
   ],
   notices: [
-    { tag: "IMPORTANT", important: true, title: "SWEAT 음원총공팀 홈페이지 오픈", date: "2026.07.21", content: "SWEAT 컴백 스트리밍 총공 사이트 오픈 안내입니다. 주요 스트리밍 링크와 오늘의 총공 내용을 확인해 주세요." },
+    { tag: "NOTICE", important: true, title: "SWEAT 음원총공팀 홈페이지 오픈", date: "2026.07.21", content: "SWEAT 컴백 스트리밍 총공 사이트 오픈 안내입니다. 주요 스트리밍 링크와 오늘의 총공 내용을 확인해 주세요." },
     { tag: "NOTICE", important: false, title: "컴백 대비 스트리밍 계정 점검 안내", date: "2026.07.20", content: "컴백 전 사용 중인 음원 플랫폼 계정의 로그인 상태와 이용권을 미리 점검해 주세요." },
     { tag: "EVENT", important: false, title: "스트리밍 인증 이벤트 안내", date: "2026.07.18", content: "스트리밍 인증 이벤트의 참여 기간과 인증 방법은 추후 공지를 통해 안내됩니다." },
     { tag: "GUIDE", important: false, title: "플랫폼별 스트리밍 유의사항 업데이트", date: "2026.07.15", content: "각 플랫폼의 최신 정책을 확인해 권장 스트리밍 방법과 유의사항을 업데이트했습니다." }

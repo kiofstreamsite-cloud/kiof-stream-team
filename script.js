@@ -192,7 +192,7 @@ function renderSiteContent() {
   }
   const aboutPanel = document.getElementById("aboutPanel");
   if (aboutPanel) {
-    const title = (about.title || "").replace(/\n/g, "<br>");
+    const title = (about.title || "").split("\n").map(line => `<span class="about-heading-line">${line}</span>`).join("");
     const paragraphs = (about.paragraphs || []).map(text => `<p>${text}</p>`).join("");
     aboutPanel.innerHTML = `
       <div>
@@ -207,6 +207,32 @@ function renderSiteContent() {
       </div>
     `;
   }
+  fitAboutHeadingLines();
+}
+function fitAboutHeadingLines() {
+  const lines = document.querySelectorAll(".about-heading-line");
+  if (!lines.length) return;
+  lines.forEach(line => { line.style.fontSize = ""; });
+  if (window.innerWidth > 720) return;
+  const heading = document.querySelector(".about-panel h2");
+  if (!heading) return;
+  const containerWidth = heading.clientWidth;
+  if (!containerWidth) return;
+  lines.forEach(line => {
+    const naturalWidth = line.getBoundingClientRect().width;
+    if (!naturalWidth) return;
+    const baseSize = parseFloat(window.getComputedStyle(line).fontSize);
+    const fitted = baseSize * (containerWidth / naturalWidth);
+    line.style.fontSize = `${fitted}px`;
+  });
+}
+let aboutHeadingResizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(aboutHeadingResizeTimer);
+  aboutHeadingResizeTimer = setTimeout(fitAboutHeadingLines, 150);
+});
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(() => fitAboutHeadingLines());
 }
 const menuButton = document.querySelector(".menu-button");
 const mobileMenu = document.querySelector(".mobile-menu");

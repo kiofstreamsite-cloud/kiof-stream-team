@@ -429,6 +429,7 @@ document.addEventListener("keydown", event => {
   if (event.key === "Escape") { closeModal(); closeMenu(); }
 });
 const sections = [...document.querySelectorAll("main section[id]")];
+const bottomNav = document.querySelector(".bottom-nav");
 const bottomLinks = [...document.querySelectorAll(".bottom-nav a")];
 const topLinks = [...document.querySelectorAll(".desktop-nav a")];
 const observer = new IntersectionObserver(entries => {
@@ -436,6 +437,7 @@ const observer = new IntersectionObserver(entries => {
     if (!entry.isIntersecting) return;
     bottomLinks.forEach(link => { link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`); });
     topLinks.forEach(link => { link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`); });
+    if (bottomNav) bottomNav.classList.toggle("bottom-nav--hidden", entry.target.id === "home");
   });
 }, { threshold: 0.35 });
 sections.forEach(section => observer.observe(section));

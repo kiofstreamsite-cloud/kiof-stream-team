@@ -255,5 +255,6 @@ footer { border-top: 1px solid var(--line); padding: 40px var(--edge) 120px; dis
   .platform-picker { grid-template-columns: 1fr; }
   .bottom-nav { display: flex; }
   footer { padding-bottom: 140px; }
+  .action-row-meta { display: none; }
 }
 @media (min-width: 721px) { .mobile-menu { display: none; } }

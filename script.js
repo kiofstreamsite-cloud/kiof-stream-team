@@ -392,7 +392,8 @@ function openFanchantModal(item) {
   const videoLink = item.videoUrl
     ? `<a class="fanchant-video-link" href="${safeLink(item.videoUrl)}" target="_blank" rel="noopener noreferrer">▶ 응원법 영상 바로가기 ↗</a>`
     : "";
-  modalBody.innerHTML = `${videoLink}<div class="fanchant-modal-content">${(item.chant || "응원법이 아직 등록되지 않았습니다.").replace(/\n/g, "<br>")}</div>`;
+  const chantStyle = item.accentColor ? ` style="--chant-color:${item.accentColor}"` : "";
+  modalBody.innerHTML = `${videoLink}<div class="fanchant-modal-content"${chantStyle}>${(item.chant || "응원법이 아직 등록되지 않았습니다.").replace(/\n/g, "<br>")}</div>`;
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
@@ -412,15 +413,20 @@ function openDonationModal(item) {
   const guide = content.idDonationGuide || {};
   setModalEyebrow("ID DONATION · 아이디 기부");
   modalTitle.textContent = item.name || "";
+  const stepsHtml = Array.isArray(item.steps) && item.steps.length
+    ? `<ol>${item.steps.map(step => `<li>${step}</li>`).join("")}</ol>`
+    : "";
+  const noticeText = item.notice || guide.notice || "";
   modalBody.innerHTML = `
     <p class="modal-lead">${guide.subtitle || ""}</p>
     <div class="donation-password">
       <span>공통 비밀번호</span>
       <code>${guide.commonPassword || "temp"}</code>
     </div>
+    ${stepsHtml}
     <div class="donation-notice">
       <strong>유의사항</strong>
-      ${guide.notice || ""}
+      ${noticeText.replace(/\n/g, "<br>")}
     </div>
     <a class="cta-button" href="${safeLink(guide.formUrl)}" ${linkAttrs(guide.formUrl)}>기부 폼 바로가기 ↗</a>
   `;

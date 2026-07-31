@@ -1,5 +1,5 @@
 window.SHEET_CONFIG = {
-  spreadsheetId: "1lhhwEo1EOFTvuNacQwzT0MUeH6LudzVLqgwd_1oXoWk",
+  spreadsheetId: "여기에_스프레드시트_ID_입력",
   sheets: {
     settings: "설정",
     missions: "오늘의총공",

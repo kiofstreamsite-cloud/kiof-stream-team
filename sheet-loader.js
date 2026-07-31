@@ -38,6 +38,16 @@ function rowsToObjects(rows) {
 function toBoolean(value) {
   return ["true", "1", "yes", "y", "예", "중요"].includes(String(value).trim().toLowerCase());
 }
+// Google's gviz endpoint silently returns the spreadsheet's first/default tab
+// whenever the requested sheet name doesn't exist, instead of erroring.
+// If a tab (설정/오늘의총공/스트리밍링크/공지사항/응원법) hasn't been created yet,
+// every mismatched request would otherwise return another tab's rows and
+// pollute that section. This checks that the fetched rows actually contain
+// the columns that section expects before trusting them.
+function isValidSheet(rows, requiredColumns) {
+  if (!rows.length) return false;
+  return requiredColumns.every(key => Object.prototype.hasOwnProperty.call(rows[0], key));
+}
 async function fetchSheet(sheetName) {
   const response = await fetch(csvUrl(sheetName), { cache: "no-store" });
   if (!response.ok) throw new Error(`${sheetName} 시트를 불러오지 못했습니다.`);
@@ -45,7 +55,8 @@ async function fetchSheet(sheetName) {
 }
 function buildSettings(rows) {
   const map = {};
-  rows.forEach(row => { if (row.key) map[row.key] = row.value || ""; });
+  const validRows = isValidSheet(rows, ["key", "value"]) ? rows : [];
+  validRows.forEach(row => { if (row.key) map[row.key] = row.value || ""; });
   return {
     site: {
       title: map.siteTitle || fallbackContent.site?.title,
@@ -84,25 +95,35 @@ async function loadGoogleSheetContent() {
   }
   const names = sheetConfig.sheets || {};
   const [settingsRows, missionRows, platformRows, noticeRows, fanchantRows] = await Promise.all([
-    fetchSheet(names.settings || "설정"),
-    fetchSheet(names.missions || "오늘의총공"),
-    fetchSheet(names.platforms || "스트리밍링크"),
-    fetchSheet(names.notices || "공지사항"),
+    fetchSheet(names.settings || "설정").catch(() => []),
+    fetchSheet(names.missions || "오늘의총공").catch(() => []),
+    fetchSheet(names.platforms || "스트리밍링크").catch(() => []),
+    fetchSheet(names.notices || "공지사항").catch(() => []),
     fetchSheet(names.fanchants || "응원법").catch(() => [])
   ]);
   const settings = buildSettings(settingsRows);
+  const validMissions = isValidSheet(missionRows, ["kicker", "title"]);
+  const validPlatforms = isValidSheet(platformRows, ["name", "tag", "url"]);
+  const validNotices = isValidSheet(noticeRows, ["tag", "date"]);
+  const validFanchants = isValidSheet(fanchantRows, ["album", "chant"]);
   return {
     ...fallbackContent,
     ...settings,
-    todayMission: missionRows.map((row, index) => ({
-      number: row.number || String(index + 1).padStart(2, "0"),
-      kicker: row.kicker || "", title: row.title || "", description: row.description || "", featured: toBoolean(row.featured)
-    })),
-    streamingPlatforms: platformRows.map(row => ({ name: row.name || "", tag: row.tag || "", url: row.url || "#" })),
-    notices: noticeRows.map(row => ({
-      tag: row.tag || "NOTICE", important: toBoolean(row.important), title: row.title || "", date: row.date || "", content: row.content || ""
-    })),
-    fanchants: fanchantRows.length
+    todayMission: validMissions
+      ? missionRows.map((row, index) => ({
+          number: row.number || String(index + 1).padStart(2, "0"),
+          kicker: row.kicker || "", title: row.title || "", description: row.description || "", featured: toBoolean(row.featured)
+        }))
+      : fallbackContent.todayMission,
+    streamingPlatforms: validPlatforms
+      ? platformRows.map(row => ({ name: row.name || "", tag: row.tag || "", url: row.url || "#" }))
+      : fallbackContent.streamingPlatforms,
+    notices: validNotices
+      ? noticeRows.map(row => ({
+          tag: row.tag || "NOTICE", important: toBoolean(row.important), title: row.title || "", date: row.date || "", content: row.content || ""
+        }))
+      : fallbackContent.notices,
+    fanchants: validFanchants
       ? fanchantRows.map(row => ({
           album: row.album || "", title: row.title || "",
           chant: (row.chant || "").replace(/\\n/g, "\n"),

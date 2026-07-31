@@ -108,8 +108,46 @@ function buildSettings(rows) {
       twitter: map.twitter || fallbackContent.links?.twitter || "#",
       email: map.email || fallbackContent.links?.email || "#",
       form: map.form || fallbackContent.links?.form || "#"
+    },
+    idDonationGuide: {
+      subtitle: map.donationSubtitle || fallbackContent.idDonationGuide?.subtitle,
+      commonPassword: map.donationCommonPassword || fallbackContent.idDonationGuide?.commonPassword,
+      notice: (map.donationNotice || fallbackContent.idDonationGuide?.notice || "").replace(/\\n/g, "\n"),
+      formUrl: map.donationFormUrl || fallbackContent.idDonationGuide?.formUrl || "#"
+    },
+    radioCommonGuide: {
+      howTo: map.radioHowTo || fallbackContent.radioCommonGuide?.howTo,
+      chartRatio: map.radioChartRatio || fallbackContent.radioCommonGuide?.chartRatio,
+      tips: map.radioTips || fallbackContent.radioCommonGuide?.tips
     }
   };
+}
+// 라디오가이드 시트는 방송사 1개당 여러 프로그램을 가지므로, 프로그램 1개 = 1행으로 입력받고
+// 같은 stationCode를 가진 행들을 하나의 방송사로 묶어줍니다.
+function buildRadioStations(rows) {
+  const order = [];
+  const map = {};
+  rows.forEach(row => {
+    const code = row.stationCode || row.stationName || "";
+    if (!code) return;
+    if (!map[code]) {
+      map[code] = {
+        code,
+        name: row.stationName || "",
+        logo: row.logo || "",
+        recommendedShow: row.recommendedShow || "",
+        reflectRate: row.reflectRate || "",
+        channel: row.channel || "",
+        sms: row.sms || "",
+        programs: []
+      };
+      order.push(code);
+    }
+    if (row.programName) {
+      map[code].programs.push({ name: row.programName, time: row.programTime || "", url: row.programUrl || "#" });
+    }
+  });
+  return order.map(code => map[code]);
 }
 async function loadGoogleSheetContent() {
   const id = sheetConfig.spreadsheetId;
@@ -118,18 +156,22 @@ async function loadGoogleSheetContent() {
     throw new Error("config.js에 스프레드시트 ID를 입력해 주세요.");
   }
   const names = sheetConfig.sheets || {};
-  const [settingsRows, missionRows, platformRows, noticeRows, fanchantRows] = await Promise.all([
+  const [settingsRows, missionRows, platformRows, noticeRows, fanchantRows, donationRows, radioRows] = await Promise.all([
     fetchSheet(names.settings || "설정").catch(() => []),
     fetchSheet(names.missions || "오늘의총공").catch(() => []),
     fetchSheet(names.platforms || "스트리밍링크").catch(() => []),
     fetchSheet(names.notices || "공지사항").catch(() => []),
-    fetchSheet(names.fanchants || "응원법").catch(() => [])
+    fetchSheet(names.fanchants || "응원법").catch(() => []),
+    fetchSheet(names.idDonation || "아이디기부").catch(() => []),
+    fetchSheet(names.radio || "라디오가이드").catch(() => [])
   ]);
   const settings = buildSettings(settingsRows);
   const validMissions = isValidSheet(missionRows, ["kicker", "title"]);
   const validPlatforms = isValidSheet(platformRows, ["name", "tag", "url"]);
   const validNotices = isValidSheet(noticeRows, ["tag", "date"]);
   const validFanchants = isValidSheet(fanchantRows, ["album", "chant"]);
+  const validDonation = isValidSheet(donationRows, ["name", "steps"]);
+  const validRadio = isValidSheet(radioRows, ["stationCode", "programName"]);
   return {
     ...fallbackContent,
     ...settings,
@@ -157,7 +199,23 @@ async function loadGoogleSheetContent() {
           chant: (row.chant || "").replace(/\\n/g, "\n"),
           videoUrl: row.videoUrl || ""
         }))
-      : fallbackContent.fanchants
+      : fallbackContent.fanchants,
+    idDonationGuide: {
+      ...fallbackContent.idDonationGuide,
+      ...settings.idDonationGuide,
+      buttons: validDonation
+        ? donationRows.map(row => ({
+            name: row.name || "",
+            type: row.type === "guide" ? "guide" : "donation",
+            icon: row.icon || matchPlatformIcon(row.name),
+            url: row.url || "#",
+            steps: (row.steps || "").split("\\n").map(step => step.trim()).filter(Boolean),
+            notice: (row.notice || "").replace(/\\n/g, "\n")
+          }))
+        : fallbackContent.idDonationGuide?.buttons
+    },
+    radioCommonGuide: { ...fallbackContent.radioCommonGuide, ...settings.radioCommonGuide },
+    radioStations: validRadio ? buildRadioStations(radioRows) : fallbackContent.radioStations
   };
 }
 window.loadGoogleSheetContent = loadGoogleSheetContent;

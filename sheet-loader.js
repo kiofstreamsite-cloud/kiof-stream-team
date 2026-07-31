@@ -141,7 +141,10 @@ async function loadGoogleSheetContent() {
         }))
       : fallbackContent.todayMission,
     streamingPlatforms: validPlatforms
-      ? platformRows.map(row => ({ name: row.name || "", tag: row.tag || "", url: row.url || "#", icon: row.icon || matchPlatformIcon(row.name) }))
+      ? platformRows.map(row => ({
+          name: row.name || "", tag: row.tag || "", url: row.url || "#", icon: row.icon || matchPlatformIcon(row.name),
+          oneClickUrls: [row.url1, row.url2, row.url3, row.url4].map(url => (url || "").trim()).filter(Boolean)
+        }))
       : fallbackContent.streamingPlatforms,
     notices: validNotices
       ? noticeRows.map(row => ({

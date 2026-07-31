@@ -58,14 +58,34 @@ function renderSiteContent() {
   }
   const platformList = document.getElementById("platformList");
   if (platformList) {
-    platformList.innerHTML = platforms.map((item, index) => `
-      <a class="platform-card" href="${safeLink(item.url)}" ${linkAttrs(item.url)}>
-        ${iconTile(item.icon, item.name)}
-        <span class="platform-name">${item.name || ""}</span>
-        <span class="platform-tag">${item.tag || ""}</span>
-        <span class="platform-arrow">↗</span>
-      </a>
-    `).join("");
+    platformList.innerHTML = platforms.map((item, index) => {
+      const isYouTube = String(item.name || "").trim().toLowerCase() === "youtube";
+      if (isYouTube) {
+        return `
+          <a class="platform-card" href="${safeLink(item.url)}" ${linkAttrs(item.url)}>
+            ${iconTile(item.icon, item.name)}
+            <span class="platform-name">${item.name || ""}</span>
+            <span class="platform-tag">${item.tag || ""}</span>
+            <span class="platform-arrow">↗</span>
+          </a>
+        `;
+      }
+      return `
+        <button class="platform-card" type="button" data-platform-index="${index}">
+          ${iconTile(item.icon, item.name)}
+          <span class="platform-name">${item.name || ""}</span>
+          <span class="platform-tag">${item.tag || ""}</span>
+          <span class="platform-arrow">↗</span>
+        </button>
+      `;
+    }).join("");
+    document.querySelectorAll("[data-platform-index]").forEach(button => {
+      button.addEventListener("click", () => {
+        const item = platforms[Number(button.dataset.platformIndex)];
+        if (!item) return;
+        openOneClickModal(item);
+      });
+    });
   }
   const guidePlatforms = content.guidePlatforms || [];
   const guidePlatformGrid = document.getElementById("guidePlatformGrid");
@@ -382,6 +402,33 @@ function openPlatformGuideModal(platform) {
       panels.forEach(panel => { panel.hidden = panel.dataset.panel !== tab.dataset.tab; });
     });
   });
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+}
+function openOneClickModal(item) {
+  setModalEyebrow("STREAMING · 원클릭 스트리밍");
+  modalTitle.textContent = `${item.name || ""} 원클릭 스트리밍`;
+  const urls = Array.isArray(item.oneClickUrls) ? item.oneClickUrls.filter(Boolean) : [];
+  const buttonsHtml = urls.length
+    ? urls.map((url, i) => `
+        <a class="oneclick-button" href="${safeLink(url)}" target="_blank" rel="noopener noreferrer">
+          <span class="oneclick-number">${i + 1}</span>
+          <span class="oneclick-label">원클릭</span>
+          <span class="oneclick-arrow">↗</span>
+        </a>
+      `).join("")
+    : `
+      <div class="guide-tab-placeholder">
+        <strong>원클릭 링크 준비중</strong>
+        스프레드시트에 링크가 등록되면 이 자리에 표시됩니다.
+      </div>
+    `;
+  modalBody.innerHTML = `
+    ${urls.length ? `<p class="modal-lead">${urls.length}개의 버튼을 모두 순서대로 클릭해주세요.</p>` : ""}
+    <div class="oneclick-button-list">${buttonsHtml}</div>
+    ${urls.length ? `<div class="modal-tip">중복곡 허용, 재생목록 전체 삭제하신 후 원클릭을 눌러주세요.</div>` : ""}
+  `;
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");

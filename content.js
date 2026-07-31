@@ -24,11 +24,11 @@ window.SITE_CONTENT = {
     { number: "03", kicker: "SOCIAL SUPPORT", title: "뮤직비디오 공유", description: "공식 링크를 이용해 영상과 해시태그를 함께 공유해 주세요.", featured: false, url: "#" }
   ],
   streamingPlatforms: [
-    { name: "Melon", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/melon.webp" },
-    { name: "Bugs!", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/bugs.webp" },
-    { name: "Genie", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/genie.webp" },
-    { name: "FLO", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/flo.webp" },
-    { name: "Spotify", tag: "GLOBAL", url: "#", icon: "assets/icons/streaming/spotify.webp" },
+    { name: "Melon", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/melon.webp", oneClickUrls: ["https://vo.la/sVAdDxH", "https://vo.la/019z5UX", "https://vo.la/rKCr6HG", "https://vo.la/M5NMkjn"] },
+    { name: "Bugs!", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/bugs.webp", oneClickUrls: ["https://vo.la/OCrvF2d"] },
+    { name: "Genie", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/genie.webp", oneClickUrls: ["https://vo.la/Jil0ZO4"] },
+    { name: "FLO", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/flo.webp", oneClickUrls: [] },
+    { name: "Spotify", tag: "GLOBAL", url: "#", icon: "assets/icons/streaming/spotify.webp", oneClickUrls: [] },
     { name: "YouTube", tag: "MV STREAMING", url: "#", icon: "assets/icons/streaming/youtube.webp" }
   ],
   guidePlatforms: [
@@ -60,9 +60,9 @@ window.SITE_CONTENT = {
         icon: "assets/icons/streaming/bugs.webp",
         url: "#",
         steps: [
-          "벅스에서 아이디를 만든다",
-          "비밀번호 <strong>kiofsweat0804!</strong>로 설정한다",
-          "반드시 한국 번호로 본인인증을 완료한다",
+          "벅스에서 아이디를 만든다. (인당 3개 생성 가능)",
+          "비밀번호 <strong>kiofsweat0804!</strong>로 설정한다.",
+          "반드시 한국 번호로 본인인증을 완료한다.",
           "기부할 아이디를 폼에 넣고 제출하면 끝!"
         ],
         notice: "· 아이디 만들 때마다 비행기 모드 ON / OFF\n· 로그아웃 후 ID 제출\n· 제출한 아이디로 재로그인 금지!\n· 개인이 사용할 아이디, 페이코 아이디는 기부 금지!\n· kissoflife530 등 연속성 있는 아이디 금지"
@@ -73,9 +73,9 @@ window.SITE_CONTENT = {
         icon: "assets/icons/streaming/genie.webp",
         url: "#",
         steps: [
-          "지니에서 아이디를 만든다",
-          "비밀번호 <strong>kiofsweat0804!</strong>로 설정한다",
-          "반드시 한국 번호로 본인인증을 완료한다",
+          "지니에서 아이디를 만든다. (1개 번호당 30일마다 3개 생성 가능)",
+          "비밀번호 <strong>kiofsweat0804!</strong>로 설정한다.",
+          "반드시 한국 번호로 본인인증을 완료한다.",
           "인증 후 프로필에 들어가 본인인증 완료 날짜를 확인한다",
           "로그아웃 후 기부할 아이디를 폼에 넣고 제출하면 끝!"
         ],

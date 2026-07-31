@@ -83,11 +83,12 @@ async function loadGoogleSheetContent() {
     throw new Error("config.js에 스프레드시트 ID를 입력해 주세요.");
   }
   const names = sheetConfig.sheets || {};
-  const [settingsRows, missionRows, platformRows, noticeRows] = await Promise.all([
+  const [settingsRows, missionRows, platformRows, noticeRows, fanchantRows] = await Promise.all([
     fetchSheet(names.settings || "설정"),
     fetchSheet(names.missions || "오늘의총공"),
     fetchSheet(names.platforms || "스트리밍링크"),
-    fetchSheet(names.notices || "공지사항")
+    fetchSheet(names.notices || "공지사항"),
+    fetchSheet(names.fanchants || "응원법").catch(() => [])
   ]);
   const settings = buildSettings(settingsRows);
   return {
@@ -100,7 +101,14 @@ async function loadGoogleSheetContent() {
     streamingPlatforms: platformRows.map(row => ({ name: row.name || "", tag: row.tag || "", url: row.url || "#" })),
     notices: noticeRows.map(row => ({
       tag: row.tag || "NOTICE", important: toBoolean(row.important), title: row.title || "", date: row.date || "", content: row.content || ""
-    }))
+    })),
+    fanchants: fanchantRows.length
+      ? fanchantRows.map(row => ({
+          album: row.album || "", title: row.title || "",
+          chant: (row.chant || "").replace(/\\n/g, "\n"),
+          videoUrl: row.videoUrl || ""
+        }))
+      : fallbackContent.fanchants
   };
 }
 window.loadGoogleSheetContent = loadGoogleSheetContent;

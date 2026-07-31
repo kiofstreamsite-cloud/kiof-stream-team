@@ -392,8 +392,7 @@ function openFanchantModal(item) {
   const videoLink = item.videoUrl
     ? `<a class="fanchant-video-link" href="${safeLink(item.videoUrl)}" target="_blank" rel="noopener noreferrer">▶ 응원법 영상 바로가기 ↗</a>`
     : "";
-  const chantStyle = item.accentColor ? ` style="--chant-color:${item.accentColor}"` : "";
-  modalBody.innerHTML = `${videoLink}<div class="fanchant-modal-content"${chantStyle}>${(item.chant || "응원법이 아직 등록되지 않았습니다.").replace(/\n/g, "<br>")}</div>`;
+  modalBody.innerHTML = `${videoLink}<div class="fanchant-modal-content">${(item.chant || "응원법이 아직 등록되지 않았습니다.").replace(/\n/g, "<br>")}</div>`;
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");

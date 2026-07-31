@@ -4,7 +4,8 @@ window.SHEET_CONFIG = {
     settings: "설정",
     missions: "오늘의총공",
     platforms: "스트리밍링크",
-    notices: "공지사항"
+    notices: "공지사항",
+    fanchants: "응원법"
   },
   useFallbackContent: true
 };

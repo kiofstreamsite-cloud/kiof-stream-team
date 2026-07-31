@@ -19,9 +19,9 @@ window.SITE_CONTENT = {
   },
   ticker: "DON'T LET THEM SEE YOUR STREAM BREAK · LET THEM SEE THE NUMBERS · NOT THE SWEAT · SILENT EFFORT · LOUD NUMBERS · MAKE IT LOOK EASY · KEEP IT COOL · KEEP IT STREAMING · HIDE THE PRESSURE · SHOW THE RESULT ·",
   todayMission: [
-    { number: "01", kicker: "DAILY STREAMING", title: "SWEAT 스트리밍", description: "각 음원 플랫폼의 권장 재생 방법을 확인하고 스트리밍에 참여해 주세요.", featured: true },
-    { number: "02", kicker: "MUSIC SHOW", title: "사전 투표 참여", description: "샘플 문구입니다. 투표 앱과 기간을 여기에 표시할 수 있습니다.", featured: false },
-    { number: "03", kicker: "SOCIAL SUPPORT", title: "뮤직비디오 공유", description: "공식 링크를 이용해 영상과 해시태그를 함께 공유해 주세요.", featured: false }
+    { number: "01", kicker: "DAILY STREAMING", title: "SWEAT 스트리밍", description: "각 음원 플랫폼의 권장 재생 방법을 확인하고 스트리밍에 참여해 주세요.", featured: true, url: "#stream" },
+    { number: "02", kicker: "MUSIC SHOW", title: "사전 투표 참여", description: "샘플 문구입니다. 투표 앱과 기간을 여기에 표시할 수 있습니다.", featured: false, url: "#" },
+    { number: "03", kicker: "SOCIAL SUPPORT", title: "뮤직비디오 공유", description: "공식 링크를 이용해 영상과 해시태그를 함께 공유해 주세요.", featured: false, url: "#" }
   ],
   streamingPlatforms: [
     { name: "Melon", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/melon.webp" },

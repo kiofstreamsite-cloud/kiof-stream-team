@@ -45,15 +45,15 @@ function renderSiteContent() {
   const missionGrid = document.getElementById("missionGrid");
   if (missionGrid) {
     missionGrid.innerHTML = missions.map((item, index) => `
-      <article class="mission-card ${item.featured ? "mission-main" : ""}">
+      <a class="mission-card ${item.featured ? "mission-main" : ""}" href="${safeLink(item.url)}" ${linkAttrs(item.url)}>
         <span class="mission-number">${item.number || String(index + 1).padStart(2, "0")}</span>
         <div>
           <p class="card-kicker">${item.kicker || ""}</p>
           <h3>${item.title || ""}</h3>
           <p>${item.description || ""}</p>
         </div>
-        ${item.featured ? '<a href="#stream" class="circle-arrow" aria-label="스트리밍 섹션으로 이동">↗</a>' : ""}
-      </article>
+        <span class="circle-arrow" aria-hidden="true">↗</span>
+      </a>
     `).join("");
   }
   const platformList = document.getElementById("platformList");

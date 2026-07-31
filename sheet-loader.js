@@ -48,6 +48,30 @@ function isValidSheet(rows, requiredColumns) {
   if (!rows.length) return false;
   return requiredColumns.every(key => Object.prototype.hasOwnProperty.call(rows[0], key));
 }
+// The 스트리밍링크 sheet only has name/tag/url columns (no icon column, since
+// asset paths aren't something people should have to type into a spreadsheet).
+// This matches a platform's icon automatically from its name so icons keep
+// showing up correctly no matter how the name is capitalized/punctuated
+// (e.g. "MELON", "Melon", "BUGS", "Bugs!" all resolve to the same icon).
+const PLATFORM_ICON_MAP = {
+  melon: "assets/icons/streaming/melon.webp",
+  genie: "assets/icons/streaming/genie.webp",
+  bugs: "assets/icons/streaming/bugs.webp",
+  flo: "assets/icons/streaming/flo.webp",
+  spotify: "assets/icons/streaming/spotify.webp",
+  youtube: "assets/icons/streaming/youtube.webp",
+  kakaomusic: "assets/icons/streaming/kakaomusic.webp",
+  vcoloring: "assets/icons/streaming/vcoloring.webp",
+  youtubemusic: "assets/icons/streaming/youtubemusic.webp",
+  applemusic: "assets/icons/streaming/applemusic.webp",
+  vibe: "assets/icons/streaming/vibe.webp",
+  stationhead: "assets/icons/streaming/stationhead.webp",
+  shazam: "assets/icons/streaming/shazam.webp"
+};
+function matchPlatformIcon(name) {
+  const key = String(name || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  return PLATFORM_ICON_MAP[key] || "";
+}
 async function fetchSheet(sheetName) {
   const response = await fetch(csvUrl(sheetName), { cache: "no-store" });
   if (!response.ok) throw new Error(`${sheetName} 시트를 불러오지 못했습니다.`);
@@ -112,11 +136,12 @@ async function loadGoogleSheetContent() {
     todayMission: validMissions
       ? missionRows.map((row, index) => ({
           number: row.number || String(index + 1).padStart(2, "0"),
-          kicker: row.kicker || "", title: row.title || "", description: row.description || "", featured: toBoolean(row.featured)
+          kicker: row.kicker || "", title: row.title || "", description: row.description || "", featured: toBoolean(row.featured),
+          url: row.url || "#"
         }))
       : fallbackContent.todayMission,
     streamingPlatforms: validPlatforms
-      ? platformRows.map(row => ({ name: row.name || "", tag: row.tag || "", url: row.url || "#" }))
+      ? platformRows.map(row => ({ name: row.name || "", tag: row.tag || "", url: row.url || "#", icon: row.icon || matchPlatformIcon(row.name) }))
       : fallbackContent.streamingPlatforms,
     notices: validNotices
       ? noticeRows.map(row => ({

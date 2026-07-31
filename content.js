@@ -25,8 +25,8 @@ window.SITE_CONTENT = {
   ],
   streamingPlatforms: [
     { name: "Melon", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/melon.webp" },
-    { name: "Genie", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/genie.webp" },
     { name: "Bugs!", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/bugs.webp" },
+    { name: "Genie", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/genie.webp" },
     { name: "FLO", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/flo.webp" },
     { name: "Spotify", tag: "GLOBAL", url: "#", icon: "assets/icons/streaming/spotify.webp" },
     { name: "YouTube", tag: "MV STREAMING", url: "#", icon: "assets/icons/streaming/youtube.webp" }
@@ -36,7 +36,7 @@ window.SITE_CONTENT = {
     { name: "Melon MV", slug: "melon-mv", tag: "국내", hasDownload: true, icon: "assets/icons/streaming/melon.webp" },
     { name: "Genie", slug: "genie", tag: "국내", hasDownload: true, icon: "assets/icons/streaming/genie.webp" },
     { name: "Bugs!", slug: "bugs", tag: "국내", hasDownload: true, icon: "assets/icons/streaming/bugs.webp" },
-    { name: "Bugs MV", slug: "bugs-mv", tag: "국내", hasDownload: true, icon: "assets/icons/streaming/bugs.webp" },
+    { name: "Bugs! MV", slug: "bugs-mv", tag: "국내", hasDownload: true, icon: "assets/icons/streaming/bugs.webp" },
     { name: "FLO", slug: "flo", tag: "국내", hasDownload: false, icon: "assets/icons/streaming/flo.webp" },
     { name: "카카오뮤직", slug: "kakao-music", tag: "국내", hasDownload: true, icon: "assets/icons/streaming/kakaomusic.webp" },
     { name: "V컬러링", slug: "v-coloring", tag: "국내", hasDownload: true, icon: "assets/icons/streaming/vcoloring.webp" },
@@ -76,7 +76,7 @@ window.SITE_CONTENT = {
     ]
   },
   voteShows: [
-    { name: "더쇼", tag: "SBS M", icon: "assets/icons/musicshow/theshow.jpg", iconFlush: true },
+    { name: "더 쇼", tag: "SBS Life", icon: "assets/icons/musicshow/theshow.jpg", iconFlush: true },
     { name: "뮤직뱅크", tag: "KBS", icon: "assets/icons/musicshow/musicbank.webp" },
     { name: "쇼챔피언", tag: "MBC M", icon: "assets/icons/musicshow/showchampion.webp" },
     { name: "엠카운트다운", tag: "Mnet", icon: "assets/icons/musicshow/mcountdown.webp" },
@@ -130,8 +130,11 @@ window.SITE_CONTENT = {
     { album: "싱글 2집", title: "Who is she", chant: "이 곡의 응원법을 이곳에 입력해 주세요." },
     { album: "디지털 싱글 Lucky", title: "Lucky", chant: "이 곡의 응원법을 이곳에 입력해 주세요." },
     { album: "미니 4집 224", title: "Lips Hips Kiss", chant: "이 곡의 응원법을 이곳에 입력해 주세요." },
+    { album: "미니 4집 224", title: "Tell Me", chant: "이 곡의 응원법을 이곳에 입력해 주세요." },
     { album: "미니 3집 Lose Yourself", title: "Get Loud", chant: "이 곡의 응원법을 이곳에 입력해 주세요." },
+    { album: "미니 3집 Lose Yourself", title: "Igloo", chant: "이 곡의 응원법을 이곳에 입력해 주세요." },
     { album: "디지털 싱글 Sticky", title: "Sticky", chant: "이 곡의 응원법을 이곳에 입력해 주세요." },
+    { album: "디지털 싱글 Te Quiero", title: "Te Quiero", chant: "이 곡의 응원법을 이곳에 입력해 주세요." },
     { album: "싱글 1집 Midas Touch", title: "Midas Touch", chant: "이 곡의 응원법을 이곳에 입력해 주세요." },
     { album: "미니 2집 Born to be XX", title: "Nobody Knows", chant: "이 곡의 응원법을 이곳에 입력해 주세요." },
     { album: "미니 2집 Born to be XX", title: "Bad News", chant: "이 곡의 응원법을 이곳에 입력해 주세요." },

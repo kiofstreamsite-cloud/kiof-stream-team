@@ -389,7 +389,10 @@ function openPlatformGuideModal(platform) {
 function openFanchantModal(item) {
   setModalEyebrow("FANCHANT · 응원법");
   modalTitle.innerHTML = `<span class="modal-album">${item.album || ""}</span>${item.title || ""}`;
-  modalBody.innerHTML = `<div class="fanchant-modal-content">${(item.chant || "응원법이 아직 등록되지 않았습니다.").replace(/\n/g, "<br>")}</div>`;
+  const videoLink = item.videoUrl
+    ? `<a class="fanchant-video-link" href="${safeLink(item.videoUrl)}" target="_blank" rel="noopener noreferrer">▶ 응원법 영상 바로가기 ↗</a>`
+    : "";
+  modalBody.innerHTML = `${videoLink}<div class="fanchant-modal-content">${(item.chant || "응원법이 아직 등록되지 않았습니다.").replace(/\n/g, "<br>")}</div>`;
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");

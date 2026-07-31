@@ -334,27 +334,33 @@ function openVoteShowModal(show) {
         ${round.cost ? `<p class="vote-round-cost">${round.cost}</p>` : ""}
         ${round.time ? `<p class="vote-round-time">투표 시간 · ${round.time}</p>` : ""}
         ${round.note ? `<p class="vote-round-note">${round.note}</p>` : ""}
-        ${Array.isArray(round.earnMethods) && round.earnMethods.length
-          ? `<ul class="vote-round-earn">${round.earnMethods.map(method => `<li>${method}</li>`).join("")}</ul>`
-          : ""}
       </div>
     `;
     }).join("");
-    const appInfoHtml = `
-      <div class="vote-app-info-list">
-        ${guide.app ? `<div class="vote-app-info"><span>투표 어플</span><strong>${guide.app}</strong></div>` : ""}
-        ${guide.currency ? `<div class="vote-app-info"><span>투표 재화</span><strong>${guide.currency}</strong></div>` : ""}
+    // Single-app shows keep app/currency/earnMethods directly on the guide object.
+    // Multi-app shows (뮤직중심, 인기가요 등) list each app as its own block via guide.apps,
+    // so the 재화/재화 획득법 always sits with the app it belongs to.
+    const appBlocks = Array.isArray(guide.apps) && guide.apps.length
+      ? guide.apps
+      : (guide.app || guide.currency || guide.earnMethods)
+        ? [{ name: guide.app, currency: guide.currency, earnMethods: guide.earnMethods }]
+        : [];
+    const appsHtml = appBlocks.map(app => `
+      <div class="vote-app-block">
+        <div class="vote-app-info-list">
+          ${app.name ? `<div class="vote-app-info"><span>투표 어플</span><strong>${app.name}</strong></div>` : ""}
+          ${app.currency ? `<div class="vote-app-info"><span>투표 재화</span><strong>${app.currency}</strong></div>` : ""}
+        </div>
+        ${Array.isArray(app.earnMethods) && app.earnMethods.length
+          ? `<p class="modal-lead vote-earn-title">재화 획득법</p><ol>${app.earnMethods.map(method => `<li>${method}</li>`).join("")}</ol>`
+          : ""}
       </div>
-    `;
-    const earnHtml = Array.isArray(guide.earnMethods) && guide.earnMethods.length
-      ? `<p class="modal-lead vote-earn-title">재화 획득법</p><ol>${guide.earnMethods.map(method => `<li>${method}</li>`).join("")}</ol>`
-      : "";
+    `).join("");
     modalBody.innerHTML = `
       <p class="modal-lead">${show.tag} · 사전·실시간 투표 가이드</p>
       ${broadcastHtml}
       <div class="vote-round-list">${roundsHtml}</div>
-      ${appInfoHtml}
-      ${earnHtml}
+      ${appsHtml}
     `;
     modal.classList.add("open");
     modal.setAttribute("aria-hidden", "false");

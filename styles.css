@@ -197,6 +197,8 @@ a.platform-pick::after { content: "↗"; position: absolute; right: 16px; top: 5
 .vote-round-earn { list-style: none; margin: 10px 0 0; padding: 10px 12px; background: rgba(246,239,225,.04); border-radius: 8px; display: flex; flex-direction: column; gap: 4px; }
 .vote-round-earn li { font-size: 12px; line-height: 1.5; color: rgba(246,239,225,.8); padding-left: 12px; position: relative; }
 .vote-round-earn li::before { content: "·"; position: absolute; left: 0; color: var(--ember); }
+.vote-app-block { margin-bottom: 18px; }
+.vote-app-block:last-child { margin-bottom: 0; }
 .vote-app-info-list { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
 .vote-app-info { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 10px; background: rgba(246,239,225,.04); border: 1px solid var(--line-strong); flex: 1 1 auto; }
 .vote-app-info span { font-family: var(--font-display); font-size: 10px; letter-spacing: 0.05em; color: var(--sand-dim); text-transform: uppercase; }

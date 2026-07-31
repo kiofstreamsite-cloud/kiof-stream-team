@@ -1,7 +1,12 @@
 let content = window.SITE_CONTENT || {};
 function safeLink(url) { return url && url !== "#" ? url : "#"; }
+function hasRealLink(url) { return Boolean(url && url !== "#"); }
 function linkAttrs(url) {
-  return url && url !== "#" ? 'target="_blank" rel="noopener noreferrer"' : 'onclick="return false;"';
+  if (!hasRealLink(url)) return 'onclick="return false;"';
+  // In-page anchors (e.g. "#idDonation") should scroll within the same tab,
+  // like the nav links do. Only actual off-site URLs open in a new tab.
+  if (url.startsWith("#")) return "";
+  return 'target="_blank" rel="noopener noreferrer"';
 }
 function iconTile(icon, fallbackLetter, variant, extraVariant) {
   const variantClass = variant ? ` icon-tile--${variant}` : "";
@@ -44,17 +49,20 @@ function renderSiteContent() {
   }
   const missionGrid = document.getElementById("missionGrid");
   if (missionGrid) {
-    missionGrid.innerHTML = missions.map((item, index) => `
-      <a class="mission-card ${item.featured ? "mission-main" : ""}" href="${safeLink(item.url)}" ${linkAttrs(item.url)}>
+    missionGrid.innerHTML = missions.map((item, index) => {
+      const linked = hasRealLink(item.url);
+      return `
+      <a class="mission-card ${item.featured ? "mission-main" : ""} ${linked ? "" : "mission-card--static"}" href="${safeLink(item.url)}" ${linkAttrs(item.url)}>
         <span class="mission-number">${item.number || String(index + 1).padStart(2, "0")}</span>
         <div>
           <p class="card-kicker">${item.kicker || ""}</p>
           <h3>${item.title || ""}</h3>
           <p>${item.description || ""}</p>
         </div>
-        <span class="circle-arrow" aria-hidden="true">↗</span>
+        ${linked ? '<span class="circle-arrow" aria-hidden="true">↗</span>' : ""}
       </a>
-    `).join("");
+    `;
+    }).join("");
   }
   const platformList = document.getElementById("platformList");
   if (platformList) {

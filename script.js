@@ -455,6 +455,22 @@ function openNoticeModal(item) {
   modal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
 }
+function fallbackCopyText(text, onSuccess) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+  try {
+    document.execCommand("copy");
+    onSuccess();
+  } catch (error) {
+    console.error(error);
+  }
+  document.body.removeChild(textarea);
+}
 function openDonationModal(item) {
   const guide = content.idDonationGuide || {};
   setModalEyebrow("ID DONATION · 아이디 기부");
@@ -463,11 +479,13 @@ function openDonationModal(item) {
     ? `<ol>${item.steps.map(step => `<li>${step}</li>`).join("")}</ol>`
     : "";
   const noticeText = item.notice || guide.notice || "";
+  const commonPassword = guide.commonPassword || "temp";
   modalBody.innerHTML = `
     <p class="modal-lead">${guide.subtitle || ""}</p>
     <div class="donation-password">
       <span>공통 비밀번호</span>
-      <code>${guide.commonPassword || "temp"}</code>
+      <code>${commonPassword}</code>
+      <button type="button" class="copy-button" data-copy-text="${commonPassword}">복사</button>
     </div>
     ${stepsHtml}
     <div class="donation-notice">
@@ -476,6 +494,26 @@ function openDonationModal(item) {
     </div>
     <a class="cta-button" href="${safeLink(guide.formUrl)}" ${linkAttrs(guide.formUrl)}>기부 폼 바로가기 ↗</a>
   `;
+  const copyButton = modalBody.querySelector(".copy-button");
+  if (copyButton) {
+    const originalLabel = copyButton.textContent;
+    copyButton.addEventListener("click", () => {
+      const text = copyButton.dataset.copyText || "";
+      const markCopied = () => {
+        copyButton.textContent = "복사됨";
+        copyButton.classList.add("copied");
+        setTimeout(() => {
+          copyButton.textContent = originalLabel;
+          copyButton.classList.remove("copied");
+        }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(markCopied).catch(() => fallbackCopyText(text, markCopied));
+      } else {
+        fallbackCopyText(text, markCopied);
+      }
+    });
+  }
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");

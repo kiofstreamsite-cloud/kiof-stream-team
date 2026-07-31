@@ -139,6 +139,10 @@ button.platform-card { font: inherit; color: inherit; cursor: pointer; text-alig
 .donation-password { display: flex; align-items: center; gap: 10px; padding: 14px 18px; margin: 4px 0 18px; border-radius: 12px; background: rgba(255,106,31,.1); border: 1px solid rgba(255,106,31,.3); }
 .donation-password span:first-child { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.06em; color: var(--sand); text-transform: uppercase; }
 .donation-password code { font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--cream); background: rgba(246,239,225,.08); padding: 3px 10px; border-radius: 6px; }
+.donation-password .copy-button { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(255,106,31,.4); background: rgba(255,106,31,.12); color: var(--ember); font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.04em; cursor: pointer; white-space: nowrap; transition: background .2s ease, color .2s ease, transform .2s ease; }
+.donation-password .copy-button:hover { background: var(--heat-h); color: var(--ink); }
+.donation-password .copy-button:active { transform: scale(.95); }
+.donation-password .copy-button.copied { background: var(--heat-h); color: var(--ink); border-color: transparent; }
 .donation-notice { font-size: 13px; line-height: 1.6; color: rgba(246,239,225,.85); background: rgba(246,239,225,.04); border: 1px solid var(--line-strong); border-radius: 12px; padding: 14px 16px; margin: 0 0 22px; }
 .donation-notice strong { display: block; font-family: var(--font-display); font-size: 11px; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 4px; text-transform: uppercase; }
 .text-button { align-self: flex-start; background: none; border: none; color: var(--ember); font-size: 13px; font-weight: 700; padding: 0; border-bottom: 1px solid transparent; transition: border-color .2s ease, color .2s ease; }

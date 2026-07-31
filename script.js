@@ -307,7 +307,9 @@ function setModalEyebrow(text) {
 // already scrolled partway down.
 function showModal() {
   if (modalScroll) modalScroll.scrollTop = 0;
-  showModal();
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
 }
 function openModal(key) {
   const data = guideContent[key];

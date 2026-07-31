@@ -101,7 +101,23 @@ window.SITE_CONTENT = {
     ]
   },
   voteShows: [
-    { name: "더 쇼", tag: "SBS Life", icon: "assets/icons/musicshow/theshow.jpg", iconFlush: true },
+    {
+      name: "더 쇼", tag: "SBS Life", icon: "assets/icons/musicshow/theshow.jpg", iconFlush: true,
+      guide: {
+        app: "BIGC",
+        currency: "무료재화 FREE GEM, 유료재화 ROYAL GEM",
+        rounds: [
+          { label: "사전 투표", percent: "20%", cost: "1표당 ROYAL GEM 20 또는 FREE GEM 400", time: "방송 전주 금요일 17:00 ~ 방송 주 월요일 10:00" },
+          { label: "실시간 투표", percent: "20%", cost: "1표당 ROYAL GEM 200 또는 FREE GEM 4,000", time: "방송 당일 18:05 ~ 19:00" }
+        ],
+        earnMethods: [
+          "동영상 광고 시청: 하루 최대 30회. 광고 1번당 200 FREE GEM (26년 9월 4일까지)",
+          "출석체크: 20 FREE GEM",
+          "마케팅 수신 동의 이벤트: 500 FREE GEM",
+          "기타 충전 미션"
+        ]
+      }
+    },
     { name: "뮤직뱅크", tag: "KBS", icon: "assets/icons/musicshow/musicbank.webp" },
     { name: "쇼챔피언", tag: "MBC M", icon: "assets/icons/musicshow/showchampion.webp" },
     { name: "엠카운트다운", tag: "Mnet", icon: "assets/icons/musicshow/mcountdown.webp" },

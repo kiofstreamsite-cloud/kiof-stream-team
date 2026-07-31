@@ -315,9 +315,41 @@ function openModal(key) {
   document.body.classList.add("modal-open");
 }
 function openVoteShowModal(show) {
-  const data = guideContent.vote;
   setModalEyebrow("VOTE GUIDE · 투표 가이드");
   modalTitle.textContent = show.name;
+  if (show.guide) {
+    const guide = show.guide;
+    const roundsHtml = (guide.rounds || []).map(round => `
+      <div class="vote-round">
+        <div class="vote-round-head">
+          <span class="vote-round-label">${round.label || ""}</span>
+          ${round.percent ? `<span class="vote-round-percent">${round.percent}</span>` : ""}
+        </div>
+        ${round.cost ? `<p class="vote-round-cost">${round.cost}</p>` : ""}
+        ${round.time ? `<p class="vote-round-time">투표 시간 · ${round.time}</p>` : ""}
+      </div>
+    `).join("");
+    const appInfoHtml = `
+      <div class="vote-app-info-list">
+        ${guide.app ? `<div class="vote-app-info"><span>투표 어플</span><strong>${guide.app}</strong></div>` : ""}
+        ${guide.currency ? `<div class="vote-app-info"><span>투표 재화</span><strong>${guide.currency}</strong></div>` : ""}
+      </div>
+    `;
+    const earnHtml = Array.isArray(guide.earnMethods) && guide.earnMethods.length
+      ? `<p class="modal-lead vote-earn-title">재화 획득법</p><ol>${guide.earnMethods.map(method => `<li>${method}</li>`).join("")}</ol>`
+      : "";
+    modalBody.innerHTML = `
+      <p class="modal-lead">${show.tag} · 사전·실시간 투표 가이드</p>
+      <div class="vote-round-list">${roundsHtml}</div>
+      ${appInfoHtml}
+      ${earnHtml}
+    `;
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+    return;
+  }
+  const data = guideContent.vote;
   modalBody.innerHTML = `
     <p class="modal-lead">${show.tag} · 사전·실시간 투표 가이드</p>
     <ol>${data.steps.map(step => `<li>${step}</li>`).join("")}</ol>

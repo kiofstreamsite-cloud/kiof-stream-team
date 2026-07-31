@@ -298,8 +298,16 @@ const modal = document.getElementById("guideModal");
 const modalTitle = document.getElementById("modalTitle");
 const modalBody = document.getElementById("modalBody");
 const modalEyebrow = document.getElementById("modalEyebrow");
+const modalScroll = document.querySelector(".modal-scroll");
 function setModalEyebrow(text) {
   if (modalEyebrow) modalEyebrow.textContent = text;
+}
+// Always open at the top: on mobile, the scroll position from a previously
+// closed popup would otherwise carry over and the next popup could open
+// already scrolled partway down.
+function showModal() {
+  if (modalScroll) modalScroll.scrollTop = 0;
+  showModal();
 }
 function openModal(key) {
   const data = guideContent[key];
@@ -310,9 +318,7 @@ function openModal(key) {
     <ol>${data.steps.map(step => `<li>${step}</li>`).join("")}</ol>
     <div class="modal-tip">${data.tip}</div>
   `;
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
+  showModal();
 }
 function openVoteShowModal(show) {
   setModalEyebrow("VOTE GUIDE · 투표 가이드");
@@ -362,9 +368,7 @@ function openVoteShowModal(show) {
       <div class="vote-round-list">${roundsHtml}</div>
       ${appsHtml}
     `;
-    modal.classList.add("open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("modal-open");
+    showModal();
     return;
   }
   const data = guideContent.vote;
@@ -373,9 +377,7 @@ function openVoteShowModal(show) {
     <ol>${data.steps.map(step => `<li>${step}</li>`).join("")}</ol>
     <div class="modal-tip">${data.tip}</div>
   `;
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
+  showModal();
 }
 function openRadioStationModal(station) {
   const common = content.radioCommonGuide || {};
@@ -402,9 +404,7 @@ function openRadioStationModal(station) {
       `).join("")}
     </div>
   `;
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
+  showModal();
 }
 function renderCommonNotes(kind) {
   const notes = (content.guideCommonNotes && content.guideCommonNotes[kind]) || [];
@@ -426,9 +426,7 @@ function openPlatformGuideModal(platform) {
         이미지가 준비되면 이 자리에 들어갑니다.
       </div>
     `;
-    modal.classList.add("open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("modal-open");
+    showModal();
     return;
   }
   modalBody.innerHTML = `
@@ -460,9 +458,7 @@ function openPlatformGuideModal(platform) {
       panels.forEach(panel => { panel.hidden = panel.dataset.panel !== tab.dataset.tab; });
     });
   });
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
+  showModal();
 }
 function openOneClickModal(item) {
   setModalEyebrow("STREAMING · 원클릭 스트리밍");
@@ -487,9 +483,7 @@ function openOneClickModal(item) {
     <div class="oneclick-button-list">${buttonsHtml}</div>
     ${urls.length ? `<div class="modal-tip">중복곡 허용, 재생목록 전체 삭제하신 후 원클릭을 눌러주세요.</div>` : ""}
   `;
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
+  showModal();
 }
 function openFanchantModal(item) {
   setModalEyebrow("FANCHANT · 응원법");
@@ -498,9 +492,7 @@ function openFanchantModal(item) {
     ? `<a class="fanchant-video-link" href="${safeLink(item.videoUrl)}" target="_blank" rel="noopener noreferrer">▶ 응원법 영상 바로가기 ↗</a>`
     : "";
   modalBody.innerHTML = `${videoLink}<div class="fanchant-modal-content">${(item.chant || "응원법이 아직 등록되지 않았습니다.").replace(/\n/g, "<br>")}</div>`;
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
+  showModal();
 }
 function openNoticeModal(item) {
   setModalEyebrow("NOTICE · 공지사항");
@@ -509,9 +501,7 @@ function openNoticeModal(item) {
     <p class="notice-modal-meta">${item.tag || "NOTICE"} · ${item.date || ""}</p>
     <div class="notice-modal-content">${(item.content || "상세 내용이 아직 등록되지 않았습니다.").replace(/\n/g, "<br>")}</div>
   `;
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
+  showModal();
 }
 function fallbackCopyText(text, onSuccess) {
   const textarea = document.createElement("textarea");
@@ -572,9 +562,7 @@ function openDonationModal(item) {
       }
     });
   }
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
+  showModal();
 }
 function openSecondNumberGuideModal(item) {
   setModalEyebrow("ID DONATION · 투넘버 가이드");
@@ -586,9 +574,7 @@ function openSecondNumberGuideModal(item) {
       서비스명, 앱 스토어 링크, 발급 절차가 준비되면 이 자리에 들어갑니다.
     </div>
   `;
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
+  showModal();
 }
 function closeModal() {
   modal.classList.remove("open");

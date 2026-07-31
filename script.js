@@ -412,7 +412,7 @@ function openOneClickModal(item) {
   const urls = Array.isArray(item.oneClickUrls) ? item.oneClickUrls.filter(Boolean) : [];
   const buttonsHtml = urls.length
     ? urls.map((url, i) => `
-        <a class="oneclick-button" href="${safeLink(url)}" target="_blank" rel="noopener noreferrer">
+        <a class="oneclick-button" href="${safeLink(url)}">
           <span class="oneclick-number">${i + 1}</span>
           <span class="oneclick-label">원클릭</span>
           <span class="oneclick-arrow">↗</span>

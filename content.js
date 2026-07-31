@@ -104,6 +104,7 @@ window.SITE_CONTENT = {
     {
       name: "더 쇼", tag: "SBS Life", icon: "assets/icons/musicshow/theshow.jpg", iconFlush: true,
       guide: {
+        broadcastInfo: "매주 화요일 18시",
         app: "BIGC",
         currency: "무료재화 FREE GEM, 유료재화 ROYAL GEM",
         rounds: [
@@ -118,11 +119,97 @@ window.SITE_CONTENT = {
         ]
       }
     },
-    { name: "뮤직뱅크", tag: "KBS", icon: "assets/icons/musicshow/musicbank.webp" },
-    { name: "쇼챔피언", tag: "MBC M", icon: "assets/icons/musicshow/showchampion.webp" },
-    { name: "엠카운트다운", tag: "Mnet", icon: "assets/icons/musicshow/mcountdown.webp" },
-    { name: "음악중심", tag: "MBC", icon: "assets/icons/musicshow/musiccore.svg" },
-    { name: "인기가요", tag: "SBS", icon: "assets/icons/musicshow/ingigayo.webp" }
+    {
+      name: "쇼챔피언", tag: "MBC M, MBC every1", icon: "assets/icons/musicshow/showchampion.webp",
+      guide: {
+        broadcastInfo: "매주 수요일 17시",
+        app: "아이돌 챔프",
+        currency: "챔심",
+        rounds: [
+          { label: "사전 투표", percent: "20%", cost: "1표당 쇼챔피언 투표권 1개 (투표권 1개당 루비 1개 or 타임 5개)", time: "방송 전주 금요일 20:00 ~ 방송 주 월요일 14:59" }
+        ],
+        earnMethods: [
+          "출석체크: 타임 챔심 30+n개",
+          "광고: 광고 1회당 루비챔심 1~100개",
+          "기타 충전 미션"
+        ]
+      }
+    },
+    {
+      name: "엠카운트다운", tag: "Mnet", icon: "assets/icons/musicshow/mcountdown.webp",
+      guide: {
+        broadcastInfo: "매주 목요일 18시",
+        app: "엠넷플러스",
+        rounds: [
+          { label: "사전 투표", percent: "10%", cost: "계정 당 1일 최대 5회", time: "방송 전주 토요일 20:00 ~ 방송 주 월요일 23:59" },
+          { label: "실시간 투표", percent: "10%", cost: "계정 당 5회", time: "엠카운트다운 생방송 중 진행" }
+        ]
+      }
+    },
+    {
+      name: "뮤직뱅크", tag: "KBS2", icon: "assets/icons/musicshow/musicbank.webp",
+      guide: {
+        broadcastInfo: "매주 금요일 17시 5분",
+        app: "coogoong(쿠궁)",
+        rounds: [
+          { label: "글로벌 사전 투표", percent: "10%", cost: "계정당 1일 최대 500회, 1표당 50 골드하트 50 블루하트", time: "방송 전주 일요일 18:00 ~ 방송 주 수요일 11:00" }
+        ],
+        earnMethods: [
+          "출석체크: 1일당 블루하트 10개",
+          "광고: 1회 20 블루하트. 1일 30회",
+          "기타 충전 미션"
+        ]
+      }
+    },
+    {
+      name: "음악중심", tag: "MBC TV", icon: "assets/icons/musicshow/musiccore.svg",
+      guide: {
+        broadcastInfo: "매주 토요일 15시 15분",
+        rounds: [
+          { label: "Mubeat(뮤빗)", currency: "하트비트", earnMethods: [
+            "동영상 광고 시청: 광고 1회당 하트비트 3개, 하루 최대 광고 15회",
+            "기타 충전 미션"
+          ] },
+          { label: "muniverse", currency: "골드루미, 애드루미", earnMethods: [
+            "광고 1회당 애드루미 5개. 1일 20회.",
+            "기타 충전 미션"
+          ] },
+          { label: "뮤빗 사전 투표", percent: "5%", cost: "1표당 하트비트 3개", time: "방송 주 화요일 18:00 ~ 방송 주 목요일 11:00" },
+          { label: "뮤니버스 사전 투표", percent: "5%", cost: "1표당 50 애드루미", time: "방송 주 화요일 18:00 ~ 방송 주 목요일 11:00" },
+          { label: "생방송 앱 투표", percent: "6% (뮤빗 3%, 뮤니버스 3%)", cost: "1위 후보 대상 중 생방송 투표권으로 계정당 최대 5표", time: "방송 당일 생방송 중", note: "뮤빗 생방송 투표권: 개당 하트비트 30개, 생방송 투표권 5개당 3,000원 · 뮤니버스 생방송 투표권: 1표당 60 골드루미 or 50 애드루미" },
+          { label: "생방송 문자 투표", percent: "4%", cost: "#0505로 'KISSOFLIFE(변경 가능성 있음)' 문자 투표. 건당 100원의 정보 이용료" }
+        ]
+      }
+    },
+    {
+      name: "인기가요", tag: "SBS", icon: "assets/icons/musicshow/ingigayo.webp",
+      guide: {
+        broadcastInfo: "매주 일요일 15시 20분",
+        rounds: [
+          {
+            label: "사전 투표", percent: "5%", app: "LiNC",
+            cost: "계정 당 매일 10표. 1표당 30 팬포인트 or 8 젬",
+            time: "방송 전주 월요일 12:00 ~ 방송 전주 금요일 23:59",
+            earnMethods: [
+              "룰렛: 1회 무료. 광고 1회당 1회 추가(광고 쿨타임 10분)로 팬 포인트 랜덤 획득.",
+              "TIN 앱과 재화 공유: 일일 미션 2개(1개당 9 팬포인트), 동영상 광고 일일 20회 1회당 6 팬 포인트."
+            ]
+          },
+          {
+            label: "실시간 투표", percent: "5%", app: "Higher(하이어)",
+            cost: "1위 후보 대상. 계정 당 최대 5표. 1표당 50 루비 or 5 다이아",
+            time: "방송 당일 생방송 중",
+            earnMethods: [
+              "출석체크: 1일 출석체크 당 루비 1개.",
+              "행운의룰렛: 1일 3회 제한. 광고 1개당 룰렛 1번 가능.",
+              "사다리게임: 1일 3회 제한. 광고 1개당 사다리 1번 가능.",
+              "광고: 동영상 광고 1회 시청당 루비 1개. 1일 최대 광고 50번",
+              "기타 충전 미션"
+            ]
+          }
+        ]
+      }
+    }
   ],
   radioCommonGuide: {
     howTo: "각 방송사 신청 게시판 또는 문자메시지로 'KISS OF LIFE - SWEAT'을 신청해 주세요.",

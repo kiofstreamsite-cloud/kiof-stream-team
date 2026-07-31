@@ -319,16 +319,27 @@ function openVoteShowModal(show) {
   modalTitle.textContent = show.name;
   if (show.guide) {
     const guide = show.guide;
-    const roundsHtml = (guide.rounds || []).map(round => `
+    const broadcastHtml = guide.broadcastInfo
+      ? `<p class="vote-broadcast-info">${show.tag}에서 ${guide.broadcastInfo}</p>`
+      : "";
+    const roundsHtml = (guide.rounds || []).map(round => {
+      const metaParts = [round.app, round.currency].filter(Boolean);
+      return `
       <div class="vote-round">
         <div class="vote-round-head">
           <span class="vote-round-label">${round.label || ""}</span>
           ${round.percent ? `<span class="vote-round-percent">${round.percent}</span>` : ""}
         </div>
+        ${metaParts.length ? `<p class="vote-round-meta">${metaParts.join(" · ")}</p>` : ""}
         ${round.cost ? `<p class="vote-round-cost">${round.cost}</p>` : ""}
         ${round.time ? `<p class="vote-round-time">투표 시간 · ${round.time}</p>` : ""}
+        ${round.note ? `<p class="vote-round-note">${round.note}</p>` : ""}
+        ${Array.isArray(round.earnMethods) && round.earnMethods.length
+          ? `<ul class="vote-round-earn">${round.earnMethods.map(method => `<li>${method}</li>`).join("")}</ul>`
+          : ""}
       </div>
-    `).join("");
+    `;
+    }).join("");
     const appInfoHtml = `
       <div class="vote-app-info-list">
         ${guide.app ? `<div class="vote-app-info"><span>투표 어플</span><strong>${guide.app}</strong></div>` : ""}
@@ -340,6 +351,7 @@ function openVoteShowModal(show) {
       : "";
     modalBody.innerHTML = `
       <p class="modal-lead">${show.tag} · 사전·실시간 투표 가이드</p>
+      ${broadcastHtml}
       <div class="vote-round-list">${roundsHtml}</div>
       ${appInfoHtml}
       ${earnHtml}

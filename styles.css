@@ -184,13 +184,19 @@ a.platform-pick::after { content: "↗"; position: absolute; right: 16px; top: 5
 .radio-station-highlight-show em { font-style: normal; color: var(--gold); font-size: 13px; margin-left: 6px; }
 .radio-station-highlight-row { font-size: 12.5px; color: rgba(246,239,225,.8); display: flex; align-items: center; gap: 6px; }
 .radio-station-highlight-row span { font-family: var(--font-display); font-size: 10px; letter-spacing: 0.05em; color: var(--sand-dim); text-transform: uppercase; }
+.vote-broadcast-info { font-size: 12px; color: var(--sand-dim); margin: -12px 0 16px; }
 .vote-round-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
 .vote-round { padding: 14px 18px; border-radius: 12px; background: rgba(210,155,108,.09); border: 1px solid rgba(210,155,108,.28); }
 .vote-round-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
 .vote-round-label { font-family: var(--font-stencil); font-weight: 700; font-size: 16px; color: var(--cream); }
 .vote-round-percent { flex-shrink: 0; font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: var(--ink); background: var(--heat-h); padding: 4px 10px; border-radius: 999px; }
+.vote-round-meta { font-size: 11px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.04em; margin: 0 0 6px; }
 .vote-round-cost { font-size: 13px; color: rgba(246,239,225,.85); margin: 0 0 4px; }
 .vote-round-time { font-size: 12px; color: var(--sand-dim); margin: 0; }
+.vote-round-note { font-size: 12px; color: rgba(246,239,225,.7); margin: 6px 0 0; }
+.vote-round-earn { list-style: none; margin: 10px 0 0; padding: 10px 12px; background: rgba(246,239,225,.04); border-radius: 8px; display: flex; flex-direction: column; gap: 4px; }
+.vote-round-earn li { font-size: 12px; line-height: 1.5; color: rgba(246,239,225,.8); padding-left: 12px; position: relative; }
+.vote-round-earn li::before { content: "·"; position: absolute; left: 0; color: var(--ember); }
 .vote-app-info-list { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
 .vote-app-info { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 10px; background: rgba(246,239,225,.04); border: 1px solid var(--line-strong); flex: 1 1 auto; }
 .vote-app-info span { font-family: var(--font-display); font-size: 10px; letter-spacing: 0.05em; color: var(--sand-dim); text-transform: uppercase; }

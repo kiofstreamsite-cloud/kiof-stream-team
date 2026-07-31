@@ -500,7 +500,7 @@ function openDonationModal(item) {
       <strong>유의사항</strong>
       ${noticeText.replace(/\n/g, "<br>")}
     </div>
-    <a class="cta-button" href="${safeLink(guide.formUrl)}" ${linkAttrs(guide.formUrl)}>기부 폼 바로가기 ↗</a>
+    <a class="cta-button" href="${safeLink(item.url || guide.formUrl)}" ${linkAttrs(item.url || guide.formUrl)}>기부 폼 바로가기 ↗</a>
   `;
   const copyButton = modalBody.querySelector(".copy-button");
   if (copyButton) {

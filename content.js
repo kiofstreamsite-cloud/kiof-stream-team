@@ -58,7 +58,7 @@ window.SITE_CONTENT = {
         name: "Bugs! 아이디 기부",
         type: "donation",
         icon: "assets/icons/streaming/bugs.webp",
-        url: "#",
+        url: "https://forms.gle/Yuqx45d1GaktnraU6",
         steps: [
           "벅스에서 아이디를 만든다. (인당 3개 생성 가능)",
           "비밀번호 <strong>kiofsweat0804!</strong>로 설정한다.",
@@ -71,7 +71,7 @@ window.SITE_CONTENT = {
         name: "Genie 아이디 기부",
         type: "donation",
         icon: "assets/icons/streaming/genie.webp",
-        url: "#",
+        url: "https://docs.google.com/forms/d/e/1FAIpQLSfutKS0G6rv-kVfs3lxGCAcAzi5KrQFJhbVy_7MJW4TOSuC7A/formResponse",
         steps: [
           "지니에서 아이디를 만든다. (1개 번호당 30일마다 3개 생성 가능)",
           "비밀번호 <strong>kiofsweat0804!</strong>로 설정한다.",

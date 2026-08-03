@@ -425,7 +425,6 @@ function openPlatformGuideModal(platform) {
       ${renderCommonNotes("streaming")}
       <div class="guide-tab-placeholder">
         <strong>${platform.name} 스트리밍 가이드 준비중</strong>
-        이미지가 준비되면 이 자리에 들어갑니다.
       </div>
     `;
     showModal();
@@ -440,14 +439,12 @@ function openPlatformGuideModal(platform) {
       ${renderCommonNotes("streaming")}
       <div class="guide-tab-placeholder">
         <strong>${platform.name} 스트리밍 가이드 준비중</strong>
-        이미지가 준비되면 이 자리에 들어갑니다.
       </div>
     </div>
     <div class="guide-tab-panel" data-panel="download" hidden>
       ${renderCommonNotes("download")}
       <div class="guide-tab-placeholder">
         <strong>${platform.name} 다운로드 가이드 준비중</strong>
-        이미지가 준비되면 이 자리에 들어갑니다.
       </div>
     </div>
   `;
@@ -477,7 +474,6 @@ function openOneClickModal(item) {
     : `
       <div class="guide-tab-placeholder">
         <strong>원클릭 링크 준비중</strong>
-        스프레드시트에 링크가 등록되면 이 자리에 표시됩니다.
       </div>
     `;
   modalBody.innerHTML = `
@@ -573,7 +569,6 @@ function openSecondNumberGuideModal(item) {
     <p class="modal-lead">아이디 기부용 계정을 추가로 만들 때 필요한 세컨 넘버(투넘버) 발급 방법이에요.</p>
     <div class="guide-tab-placeholder">
       <strong>투넘버 발급 가이드 준비중</strong>
-      서비스명, 앱 스토어 링크, 발급 절차가 준비되면 이 자리에 들어갑니다.
     </div>
   `;
   showModal();

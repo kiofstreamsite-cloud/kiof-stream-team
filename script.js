@@ -459,9 +459,32 @@ function openPlatformGuideModal(platform) {
   });
   showModal();
 }
+const ONE_CLICK_DEVICE_LABELS = { android: "안드로이드", ios: "iOS", pc: "PC" };
 function openOneClickModal(item) {
   setModalEyebrow("STREAMING · 원클릭 스트리밍");
   modalTitle.textContent = `${item.name || ""} 원클릭 스트리밍`;
+  // Some platforms (e.g. Genie) hand out a different link per device instead of
+  // one shared sequence — only one of these should be clicked, whichever
+  // matches the fan's own device, so it gets its own button style/copy.
+  const deviceEntries = item.oneClickByDevice
+    ? Object.entries(item.oneClickByDevice).filter(([, url]) => url)
+    : [];
+  if (deviceEntries.length) {
+    const buttonsHtml = deviceEntries.map(([device, url]) => `
+      <a class="oneclick-button" href="${safeLink(url)}">
+        <span class="oneclick-device">${ONE_CLICK_DEVICE_LABELS[device] || device}</span>
+        <span class="oneclick-label">원클릭</span>
+        <span class="oneclick-arrow">↗</span>
+      </a>
+    `).join("");
+    modalBody.innerHTML = `
+      <p class="modal-lead">본인 기기에 맞는 버튼 1개만 눌러주세요.</p>
+      <div class="oneclick-button-list">${buttonsHtml}</div>
+      <div class="modal-tip">중복곡 허용, 재생목록 전체 삭제하신 후 원클릭을 눌러주세요.</div>
+    `;
+    showModal();
+    return;
+  }
   const urls = Array.isArray(item.oneClickUrls) ? item.oneClickUrls.filter(Boolean) : [];
   const buttonsHtml = urls.length
     ? urls.map((url, i) => `

@@ -26,7 +26,7 @@ window.SITE_CONTENT = {
   streamingPlatforms: [
     { name: "Melon", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/melon.webp", oneClickUrls: ["https://vo.la/sVAdDxH", "https://vo.la/019z5UX", "https://vo.la/rKCr6HG", "https://vo.la/M5NMkjn"] },
     { name: "Bugs!", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/bugs.webp", oneClickUrls: ["https://vo.la/OCrvF2d"] },
-    { name: "Genie", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/genie.webp", oneClickUrls: ["https://vo.la/Jil0ZO4"] },
+    { name: "Genie", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/genie.webp", oneClickByDevice: { android: "https://tinyurl.com/2xek34sd", ios: "https://tinyurl.com/mt383bf9", pc: "https://tinyurl.com/26st3r3b" } },
     { name: "FLO", tag: "국내 스트리밍", url: "#", icon: "assets/icons/streaming/flo.webp", oneClickUrls: [] },
     { name: "Spotify", tag: "GLOBAL", url: "#", icon: "assets/icons/streaming/spotify.webp", oneClickUrls: [] },
     { name: "YouTube", tag: "MV STREAMING", url: "#", icon: "assets/icons/streaming/youtube.webp" }

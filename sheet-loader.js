@@ -183,10 +183,22 @@ async function loadGoogleSheetContent() {
         }))
       : fallbackContent.todayMission,
     streamingPlatforms: validPlatforms
-      ? platformRows.map(row => ({
-          name: row.name || "", tag: row.tag || "", url: row.url || "#", icon: row.icon || matchPlatformIcon(row.name),
-          oneClickUrls: [row.url1, row.url2, row.url3, row.url4].map(url => (url || "").trim()).filter(Boolean)
-        }))
+      ? platformRows.map(row => {
+          // Most platforms use a shared sequence of "click these in order" links,
+          // but a platform can instead offer one link per device (urlAndroid/
+          // urlIos/urlPc) — whichever set of columns actually has values wins.
+          const deviceUrls = {
+            android: (row.urlAndroid || "").trim(),
+            ios: (row.urlIos || "").trim(),
+            pc: (row.urlPc || "").trim()
+          };
+          const hasDeviceUrls = Object.values(deviceUrls).some(Boolean);
+          return {
+            name: row.name || "", tag: row.tag || "", url: row.url || "#", icon: row.icon || matchPlatformIcon(row.name),
+            oneClickUrls: [row.url1, row.url2, row.url3, row.url4].map(url => (url || "").trim()).filter(Boolean),
+            ...(hasDeviceUrls ? { oneClickByDevice: deviceUrls } : {})
+          };
+        })
       : fallbackContent.streamingPlatforms,
     notices: validNotices
       ? noticeRows.map(row => ({

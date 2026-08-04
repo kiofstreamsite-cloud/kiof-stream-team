@@ -260,6 +260,7 @@ footer { border-top: 1px solid var(--line); padding: 40px var(--edge) 120px; dis
 .oneclick-button:hover { transform: translateY(-2px); box-shadow: 0 10px 26px -10px rgba(255,106,31,.6); }
 .oneclick-button:active { transform: scale(.98); }
 .oneclick-number { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: rgba(15,12,10,.22); font-size: 13px; flex-shrink: 0; }
+.oneclick-device { display: inline-flex; align-items: center; justify-content: center; min-width: 26px; height: 26px; padding: 0 10px; border-radius: 999px; background: rgba(15,12,10,.22); font-size: 12px; flex-shrink: 0; white-space: nowrap; }
 .oneclick-label { flex: 1; }
 .oneclick-arrow { font-size: 15px; }
 .radio-common-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 4px 0 20px; padding: 16px 18px; background: rgba(255,194,61,.07); border: 1px solid rgba(255,194,61,.25); border-radius: 12px; }

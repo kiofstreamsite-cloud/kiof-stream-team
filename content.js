@@ -151,6 +151,7 @@ window.SITE_CONTENT = {
       guide: {
         broadcastInfo: "매주 금요일 17시 5분",
         app: "coogoong(쿠궁)",
+        currency: "골드하트, 블루하트",
         rounds: [
           { label: "글로벌 사전 투표", percent: "10%", cost: "계정당 1일 최대 500회, 1표당 50 골드하트 50 블루하트", time: "방송 전주 일요일 18:00 ~ 방송 주 수요일 11:00" }
         ],
@@ -200,7 +201,7 @@ window.SITE_CONTENT = {
           }
         ],
         apps: [
-          { name: "LiNC", earnMethods: [
+          { name: "LiNC", currency: "팬포인트, 젬, 루비, 다이아", earnMethods: [
             "룰렛 : 1회 무료. 광고 1회당 1회 추가(광고 쿨타임 10분)로 팬 포인트 랜덤 획득",
             "TIN 앱과 재화 공유 : 일일 미션 2개(1개당 9 팬포인트), 동영상 광고 일일 20회 1회당 6 팬 포인트",
             "출석체크 : 1일 출석체크 당 루비 1개",

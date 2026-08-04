@@ -222,36 +222,36 @@ window.SITE_CONTENT = {
     {
       code: "kbs", name: "KBS", logo: "assets/icons/musicshow/kbs-logo.png", recommendedShow: "뮤직뱅크", reflectRate: "20% 반영", channel: "Cool FM", sms: "#8910",
       programs: [
-        { name: "박명수의 라디오쇼", time: "11시", url: "#" },
-        { name: "폴킴의 가요광장", time: "12–13시", url: "#" },
-        { name: "하하의 슈퍼라디오", time: "14–15시", url: "#" },
-        { name: "윤정수 남창희의 미스터라디오", time: "16–17시", url: "#" },
-        { name: "오마이걸 효정의 볼륨을 높여요", time: "20–21시", url: "#" },
-        { name: "한해의 키스 더 라디오", time: "22–23시", url: "#" }
+        { name: "박명수의 라디오쇼", time: "11시", url: "https://program.kbs.co.kr/2fm/radio/radioshow/pc/board.html?smenu=e5c2d2&bbs_loc=R2014-0355-03-990338,list,none,1,0" },
+        { name: "폴킴의 가요광장", time: "12–13시", url: "https://program.kbs.co.kr/2fm/radio/paulgayo/pc/index.html" },
+        { name: "하하의 슈퍼라디오", time: "14–15시", url: "https://program.kbs.co.kr/2fm/radio/superradio/pc/index.html" },
+        { name: "윤정수 남창희의 미스터라디오", time: "16–17시", url: "https://program.kbs.co.kr/2fm/radio/misterradio/pc/index.html" },
+        { name: "오마이걸 효정의 볼륨을 높여요", time: "20–21시", url: "https://program.kbs.co.kr/2fm/radio/hyojung_volume/pc/index.html" },
+        { name: "한해의 키스 더 라디오", time: "22–23시", url: "https://program.kbs.co.kr/2fm/radio/hanhaekiss/pc/index.html" }
       ]
     },
     {
       code: "mbc", name: "MBC", logo: "assets/icons/musicshow/mbc-logo.png", recommendedShow: "음악중심", reflectRate: "10% 반영", channel: "FM4U", sms: "#8000",
       programs: [
-        { name: "굿모닝FM 테이입니다", time: "07–08시", url: "#" },
-        { name: "오늘아침 윤상입니다", time: "09–10시", url: "#" },
-        { name: "정오의 희망곡 김신영입니다", time: "12–13시", url: "#" },
-        { name: "두시의 데이트 안영미입니다", time: "14–15시", url: "#" },
-        { name: "김이나의 별이 빛나는 밤에", time: "20–21시", url: "#" },
-        { name: "친한친구 방송반", time: "22시", url: "#" },
-        { name: "IDOL RADIO", time: "23시", url: "#" }
+        { name: "굿모닝FM 테이입니다", time: "07–08시", url: "https://www.imbc.com/broad/radio/fm4u/morningfm/index.html" },
+        { name: "오늘아침 윤상입니다", time: "09–10시", url: "https://www.imbc.com/broad/radio/fm4u/todaym/index.html" },
+        { name: "정오의 희망곡 김신영입니다", time: "12–13시", url: "https://www.imbc.com/broad/radio/fm4u/musicparty/index.html" },
+        { name: "두시의 데이트 안영미입니다", time: "14–15시", url: "https://www.imbc.com/broad/radio/fm4u/date/index.html" },
+        { name: "김이나의 별이 빛나는 밤에", time: "20–21시", url: "https://www.imbc.com/broad/radio/fm4U/starnight/index.html" },
+        { name: "친한친구 방송반", time: "22시", url: "https://www.imbc.com/broad/radio/fm4u/bfever/" },
+        { name: "IDOL RADIO", time: "23시", url: "https://www.imbc.com/broad/radio/fm4u/idolradio/index.html" }
       ]
     },
     {
       code: "sbs", name: "SBS", logo: "assets/icons/musicshow/sbs-logo.png", recommendedShow: "인기가요", reflectRate: "10% 반영", channel: "파워 FM", sms: "#1077",
       programs: [
-        { name: "12시엔 주현영", time: "12–13시", url: "#" },
-        { name: "두시탈출 컬투쇼", time: "14–15시", url: "#" },
-        { name: "황제성의 황제파워", time: "16–17시", url: "#" },
-        { name: "박소현의 러브게임", time: "18–19시", url: "#" },
-        { name: "웬디의 영스트리트", time: "20–21시", url: "#" },
-        { name: "배성재의 TEN", time: "22시", url: "#" },
-        { name: "딘딘의 뮤직하이", time: "23–00시", url: "#" }
+        { name: "12시엔 주현영", time: "12–13시", url: "https://programs.sbs.co.kr/radio/sbs12n/main" },
+        { name: "두시탈출 컬투쇼", time: "14–15시", url: "https://programs.sbs.co.kr/radio/cultwoshow/main" },
+        { name: "황제성의 황제파워", time: "16–17시", url: "https://programs.sbs.co.kr/radio/kingcastlepower/main" },
+        { name: "박소현의 러브게임", time: "18–19시", url: "https://programs.sbs.co.kr/radio/lovegame/main" },
+        { name: "웬디의 영스트리트", time: "20–21시", url: "https://programs.sbs.co.kr/radio/wendy0s/main" },
+        { name: "배성재의 TEN", time: "22시", url: "https://programs.sbs.co.kr/radio/ten/main" },
+        { name: "딘딘의 뮤직하이", time: "23–00시", url: "https://programs.sbs.co.kr/radio/dindinmusichigh/main" }
       ]
     }
   ],
